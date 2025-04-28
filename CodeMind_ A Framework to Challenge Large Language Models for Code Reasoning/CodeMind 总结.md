@@ -48,8 +48,14 @@
 
 3. **规范推理(SR)**: 评估模型能否理解并实现指定的行为要求，如图1(a、b)所示。
 
-   > **定义 3：规范推理（SR）。** 给定一个规范 $S: S_I \rightarrow S_O$，以自然语言或编程语言表示，一个任意测试 $t=\langle i, o\rangle$，其中 $i \in S_I, o \in S_O, S(i)=o$，程序 $C_S: C_{S_I} \rightarrow C_{S_O}$（由 LLM $L$ 根据规范 $S$ 生成），以及程序 $C_{S+t}: C_{S+t_I} \rightarrow C_{S+t_O}$（由 LLM $L$ 根据规范 $S$ 和测试 $t$ 生成），如果 $C_{S+t}(i)=o \quad \& \quad C_S(i) \neq o$，则 LLM 可以正确地进行规范推理。换句话说，LLM $L$ 应该能够在提示中明确指定 $\langle i, o\rangle$ 时通过该测试，否则则不通过。这表明模型不仅仅是对规范进行了过拟合，而是能够对其进行推理。
-
+   > **定义 3：规范推理（SR）。** 给定一个规范 $S: S_I \rightarrow S_O$，以自然语言或编程语言表示，一个任意测试 $t=\langle i, o\rangle$，其中 $i \in S_I, o \in S_O, S(i)=o$，
+   >
+   > 1. 程序 $C_S: C_{S_I} \rightarrow C_{S_O}$（由 LLM $L$ 根据规范 $S$ 生成），
+   > 2. 以及程序 $C_{S+t}: C_{S+t_I} \rightarrow C_{S+t_O}$（由 LLM $L$ 根据规范 $S$ 和测试 $t$ 生成），如果 $C_{S+t}(i)=o \quad \& \quad C_S(i) \neq o$，则 LLM 可以正确地进行规范推理。
+   > 3. 换句话说，LLM $L$ 应该能够在提示中明确指定 $\langle i, o\rangle$ 时通过该测试，否则则不通过。这表明模型不仅仅是对规范进行了过拟合，而是能够对其进行推理。
+   
+   <img src="pic/pic_1a.png" style="zoom:50%;" />
+   
    <img src="pic/pic_1b.png" style="zoom:50%;" />
 
 这种多维度的评估方法使我们能够更全面地了解LLMs处理代码的能力。
